@@ -3,6 +3,8 @@ import { Text, View,StyleSheet, Image, TextInput } from "react-native"
 import { fontSize, iconSize, Spacing } from "../constants/dimensions"
 import { colors } from "../colors/colors"
 import { fontFamily } from "../constants/fonts"
+import Category from "../components/Category"
+import ProductCard from "../components/ProductCard"
 const HomeScreen = ()=>{
 return (
   <>
@@ -10,9 +12,12 @@ return (
       <Text style={styles.headerLine}>Find your suitable watch now.</Text>
       <View style={styles.mainInputContainer}>
         <View style={styles.inputWrapper}>
-          {' '}
           <Image source={require('../images/search.png')} style={styles.logo} />
-          <TextInput style={styles.textInput} />        
+          <TextInput
+            style={styles.textInput}
+            placeholder="Search Product"
+            placeholderTextColor={colors.placeholderText}
+          />
         </View>
         <View style={styles.categoryContainer}>
           <Image
@@ -21,13 +26,15 @@ return (
           />
         </View>
       </View>
+      <Category />
+      <ProductCard/>
     </View>
   </>
 );
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+  //  flex: 1,
     backgroundColor: colors.background,
     padding: Spacing.md,
   },
@@ -44,7 +51,7 @@ const styles = StyleSheet.create({
   inputWrapper: {
     flex: 1,
     borderWidth: 1,
-    borderColor: colors.gray,
+    borderColor: colors.placeholderText,
     borderRadius: 50,
     flexDirection: 'row',
     alignItems: 'center',
@@ -57,6 +64,7 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     fontSize: fontSize.lg,
+    fontFamily:fontFamily.Medium
   },
   categoryContainer:{
     paddingHorizontal:Spacing.sm
