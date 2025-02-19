@@ -1,10 +1,11 @@
 import React from "react"
-import { Text, View,StyleSheet, Image, TextInput } from "react-native"
+import { Text, View,StyleSheet, Image, TextInput, FlatList } from "react-native"
 import { fontSize, iconSize, Spacing } from "../constants/dimensions"
 import { colors } from "../colors/colors"
 import { fontFamily } from "../constants/fonts"
 import Category from "../components/Category"
 import ProductCard from "../components/ProductCard"
+import { smartWatch } from "../data/smartWatch"
 const HomeScreen = ()=>{
 return (
   <>
@@ -27,7 +28,15 @@ return (
         </View>
       </View>
       <Category />
-      <ProductCard/>
+      <FlatList
+        data={smartWatch}
+        key={2}
+        renderItem={({item,index}) => <ProductCard product={item}/>}
+        numColumns={2}
+        columnWrapperStyle={{justifyContent: 'space-between'}}
+        contentContainerStyle={{paddingBottom:800}}
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   </>
 );
