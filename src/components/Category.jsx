@@ -5,25 +5,24 @@ import { fontFamily } from '../constants/fonts';
 import { colors } from '../colors/colors';
 import { category } from './../data/category';
 
-const Category = () => {
-    const [selected ,setSelected] = useState("Smart Watch")
-    const handleSelectCtegory = (category)=>{
-        setSelected(category)
-    }
+const Category = ({selectedCategory, handleSelectedCategory}) => {
+  console.log(selectedCategory,)
   return (
     <FlatList
       data={category}
       renderItem={({item, index}) => (
-        <TouchableOpacity onPress={()=>{handleSelectCtegory(item.name)}}>
+        <TouchableOpacity
+          onPress={() => {
+            handleSelectedCategory(item.name);
+          }}>
           <Text
             style={[
               styles.categoryText,
-              selected === item.name && {color: colors.purple},
+              selectedCategory === item.name && {color: colors.purple},
             ]}>
             {item.name}
           </Text>
-          {selected === item.name&&
-          <View style={styles.underline} />}
+          {selectedCategory === item.name && <View style={styles.underline} />}
         </TouchableOpacity>
       )}
       keyExtractor={item => item.id}
@@ -32,7 +31,7 @@ const Category = () => {
         <View style={{paddingHorizontal: Spacing.sm}} />
       }></FlatList>
   );
-}
+};
 
 export default Category
 

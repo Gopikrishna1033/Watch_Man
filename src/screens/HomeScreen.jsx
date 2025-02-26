@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Text, View,StyleSheet, Image, TextInput, FlatList } from "react-native"
 import { fontSize, iconSize, Spacing } from "../constants/dimensions"
 import { colors } from "../colors/colors"
@@ -6,7 +6,19 @@ import { fontFamily } from "../constants/fonts"
 import Category from "../components/Category"
 import ProductCard from "../components/ProductCard"
 import { smartWatch } from "../data/smartWatch"
+import { headphones } from "../data/headphones"
 const HomeScreen = ()=>{
+  const [data,setData] = useState(smartWatch)
+  const [selectedCategory,setSelectedCategory] = useState('Smart Watch')
+  const handleSelectedCategory = (newCategory)=>{
+    if(newCategory === "Smart Watch"){
+      setSelectedCategory(newCategory);
+      setData(smartWatch)
+    }else if (newCategory === 'Head Phones') {
+      setSelectedCategory(newCategory);
+      setData(headphones);
+    }
+  }
 return (
   <>
     <View style={styles.container}>
@@ -27,14 +39,17 @@ return (
           />
         </View>
       </View>
-      <Category />
+      <Category
+        selectedCategory={selectedCategory}
+        handleSelectedCategory={handleSelectedCategory}
+      />
       <FlatList
-        data={smartWatch}
+        data={data}
         key={2}
-        renderItem={({item,index}) => <ProductCard product={item}/>}
+        renderItem={({item, index}) => <ProductCard product={item} />}
         numColumns={2}
-        columnWrapperStyle={{justifyContent: 'space-between'}}
-        contentContainerStyle={{paddingBottom:800}}
+        columnWrapperStyle={{justifyContent: 'space-between',gap:10}}
+        contentContainerStyle={{paddingBottom: 800,}}
         showsVerticalScrollIndicator={false}
       />
     </View>
