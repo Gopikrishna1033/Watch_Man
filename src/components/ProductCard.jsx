@@ -3,12 +3,16 @@ import React from 'react'
 import { colors } from '../colors/colors'
 import { fontSize, Spacing } from '../constants/dimensions'
 import { fontFamily } from '../constants/fonts'
-const imageURL="https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1725994442/Croma%20Assets/Communication/Wearable%20Devices/Images/309428_0_jhv5to.png"
+import { useNavigation } from '@react-navigation/native'
+// const imageURL="https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1725994442/Croma%20Assets/Communication/Wearable%20Devices/Images/309428_0_jhv5to.png"
 const ProductCard = ({product}) => {
+  const navigation = useNavigation()
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate('productdetails',{product})}>
       <View style={styles.imageWrapper}>
-        <Image source={{uri:product.image}} style={styles.productImage}/>
+        <Image source={{uri: product.image}} style={styles.productImage} />
       </View>
       <View style={styles.contentConntainer}>
         <Text style={styles.name}>{product.name}</Text>
@@ -16,7 +20,7 @@ const ProductCard = ({product}) => {
         <Text style={styles.price}>{product.price}</Text>
       </View>
     </TouchableOpacity>
-  )
+  );
 }
 
 export default ProductCard

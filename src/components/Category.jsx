@@ -6,7 +6,6 @@ import { colors } from '../colors/colors';
 import { category } from './../data/category';
 
 const Category = ({selectedCategory, handleSelectedCategory}) => {
-  console.log(selectedCategory,)
   return (
     <FlatList
       data={category}
