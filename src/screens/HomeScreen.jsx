@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Text, View,StyleSheet, Image, TextInput, FlatList } from "react-native"
+import { Text, View,StyleSheet, Image, TextInput, FlatList, Alert } from "react-native"
 import { fontSize, iconSize, Spacing } from "../constants/dimensions"
 import { colors } from "../colors/colors"
 import { fontFamily } from "../constants/fonts"
@@ -10,6 +10,7 @@ import { headphones } from "../data/headphones"
 const HomeScreen = ()=>{
   const [data,setData] = useState(smartWatch)
   const [selectedCategory,setSelectedCategory] = useState('Smart Watch')
+  const[searchText,setSearchText]=useState('')
   const handleSelectedCategory = (newCategory)=>{
     if(newCategory === "Smart Watch"){
       setSelectedCategory(newCategory);
@@ -17,7 +18,15 @@ const HomeScreen = ()=>{
     }else if (newCategory === 'Head Phones') {
       setSelectedCategory(newCategory);
       setData(headphones);
+    }else{
+      Alert.alert("Out of Stock","Sorry, this product is currently out of stock.")
     }
+  }
+  const handleSearch=(text)=>{
+setSearchText(text)
+if(text){
+setSearchText()
+}
   }
 return (
   <>
@@ -30,6 +39,8 @@ return (
             style={styles.textInput}
             placeholder="Search Product"
             placeholderTextColor={colors.placeholderText}
+            value={searchText}
+            //onChange={handleSearch}
           />
         </View>
         <View style={styles.categoryContainer}>

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.background,
     width: '50%',
-    height: 300,
+    height: "auto",
     borderRadius: 12,
     marginVertical: Spacing.md,
     elevation: 5,
